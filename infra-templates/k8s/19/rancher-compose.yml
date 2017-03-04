@@ -1,10 +1,48 @@
 .catalog:
   name: Kubernetes
-  version: v1.5.2-rancher1-2
+  version: v1.5.2-rancher1-3
   description: Rancher Kubernetes service
-  minimum_rancher_version: v1.4.0-rc1
-  maximum_rancher_version: v1.4.99
+  minimum_rancher_version: v1.5.0-rc1
   questions:
+  - variable: CONSTRAINT_TYPE
+    label: Plane Isolation
+    description: Isolate the data, orchestration and compute planes via host labels. Set to required when running in production.
+    required: true
+    default: none
+    type: enum
+    options:
+    - none
+    - required
+  - variable: CLOUD_PROVIDER
+    label: Cloud Provider
+    description: The cloud provider on which Kubernetes is running
+    required: true
+    default: rancher
+    type: enum
+    options:
+     - rancher
+     - aws
+  - variable: DISABLE_ADDONS
+    label: Disable Rancher Add-ons
+    description: Warning - setting this to `true` will disable SkyDNS, dashboard, helm and other k8s services. This is meant for advanced users who want to implement their own DNS, UI and other addons.
+    required: true
+    default: false
+    type: enum
+    options:
+     - true
+     - false
+  - variable: POD_INFRA_CONTAINER_IMAGE
+    label: Pod Infra Container Image
+    description: The image whose network/ipc namespaces containers in each pod will use. (It uses kubelet default if left empty)
+    required: false
+    default: "gcr.io/google_containers/pause-amd64:3.0"
+    type: string
+  - variable: REGISTRY
+    description: The registry to pull addon images from. This should be set to the private registry from which the images for helm, heapster, dashboard and dns (and other addon-services) should be pulled.
+    label: Private Registry for Add-Ons
+    required: false
+    default: ""
+    type: string
   - variable: EMBEDDED_BACKUPS
     label: Enable Backups
     description: "Periodically backup state to /var/etcd/backups. Mount network storage here on all hosts before continuing"
@@ -23,31 +61,18 @@
     required: true
     default: 24h
     type: string
-  - variable: CLOUD_PROVIDER
-    label: Cloud Provider
-    description: The cloud provider on which Kubernetes is running
+  - variable: ETCD_HEARTBEAT_INTERVAL
+    label: Etcd Heartbeat Interval
+    description: Time (in milliseconds) of a heartbeat interval.
     required: true
-    default: rancher
-    type: enum
-    options:
-     - rancher
-     - aws
-  - variable: DISABLE_ADDONS
-    label: Disable rancher addons
-    description: Warning, Setting this to true will disable SkyDNS, dashboard, helm and other k8s services. This is meant for advanced users who want to implement their own DNS, UI and other addons.
+    default: 500
+    type: int
+  - variable: ETCD_ELECTION_TIMEOUT
+    label: Etcd Election Timeout
+    description: Time (in milliseconds) for an election to timeout.
     required: true
-    default: false
-    type: enum
-    options:
-     - true
-     - false
-  - variable: POD_INFRA_CONTAINER_IMAGE
-    label: Pod Infra Container Image
-    description: The image whose network/ipc namespaces containers in each pod will use. (It uses kubelet default if left empty)
-    required: false
-    default: "gcr.io/google_containers/pause-amd64:3.0"
-    type: string
-
+    default: 5000
+    type: int
 kubernetes:
     metadata:
         sans:
