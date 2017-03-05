@@ -43,8 +43,8 @@
     required: false
     default: "registry.cn-hangzhou.aliyuncs.com"
     type: string
-  - variable: ADDONS_IMAGE_NAMESPACE
-    description: Addons images namespace for registry
+  - variable: IMAGE_NAMESPACE
+    description: images namespace for registry
     label: Image namespace for Add-Ons registry
     required: false
     default: "rancher-cn"
