@@ -213,6 +213,7 @@ addon-starter:
         KUBERNETES_URL: https://kubernetes.kubernetes.rancher.internal:6443
         DISABLE_ADDONS: ${DISABLE_ADDONS}
         REGISTRY: ${REGISTRY}
+        ADDONS_IMAGE_NAMESPACE: ${ADDONS_IMAGE_NAMESPACE}
     command:
         - addons-update.sh
     links:
