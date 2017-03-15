@@ -1,8 +1,8 @@
-name: HNA GLB
+name: GLB
 description: |
-  HNA GLB
+  GLB
 version: v0.2
-category: HNA
+category: Networking
 labels:
   io.rancher.certified: rancher
   io.rancher.orchestration.supported: 'cattle'

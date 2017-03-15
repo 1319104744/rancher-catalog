@@ -2,7 +2,7 @@ name: Beancounter Agent
 description: |
   Rancher Resource Usage Tracking Agent
 version: v0.3.13-fix
-category: HNA
+category: Counting
 labels:
   io.rancher.certified: rancher
   io.rancher.orchestration.supported: 'cattle'

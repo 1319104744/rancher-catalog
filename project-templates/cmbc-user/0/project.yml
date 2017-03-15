@@ -1,10 +1,10 @@
-name: HNA-Admin
-description: HNA admin template
+name: CMBC-User
+description: CMBC user template
 stacks:
   - name: network-services
     templateId: 'library:infra*network-services'
-  - name: vxlan-admin
-    templateId: 'library:infra*vxlan-admin'
+  - name: vxlan-user
+    templateId: 'library:infra*vxlan-user'
   - name: scheduler
     templateId: 'library:infra*scheduler'
   - name: healthcheck
