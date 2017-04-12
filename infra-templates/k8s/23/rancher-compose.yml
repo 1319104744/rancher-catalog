@@ -26,7 +26,7 @@
     description: The registry to pull addon images and the optional pod infra container image. This should be set to the private registry from which the images for addon-services (i.e. helm, heapster, dashboard, dns) and the pod infra container image should be pulled.
     label: Private Registry for Add-Ons and Pod Infra Container Image
     required: false
-    default: "registry.cn-hangzhou.aliyuncs.com/rancher-cn/pause-amd64:3.0"
+    default: "registry.cn-hangzhou.aliyuncs.com"
     type: string
   - variable: DISABLE_ADDONS
     label: Disable Rancher Add-ons
@@ -41,7 +41,7 @@
     label: Pod Infra Container Image
     description: The image whose network/ipc namespaces containers in each pod will use. It uses kubelet default if left empty. Do not add the private registry to this field, update the `Private Registry for Add-Ons and Pod Infra Container Image` field with the registry information.
     required: false
-    default: "registry.cn-hangzhou.aliyuncs.com/rancher-cn/pause-amd64:3.0"
+    default: "rancher-cn/pause-amd64:3.0"
     type: string
   - variable: IMAGE_NAMESPACE
     description: images namespace for registry
