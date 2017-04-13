@@ -1,9 +1,9 @@
 .catalog:
   name: Kubernetes
-  version: v1.5.2-rancher1-4
+  version: v1.5.2-rancher1-5
   description: Rancher Kubernetes service
   minimum_rancher_version: v1.4.0-rc1
-  maximum_rancher_version: v1.4.0-rc1
+  maximum_rancher_version: v1.4.99
   questions:
   - variable: CLOUD_PROVIDER
     label: Cloud Provider
@@ -27,19 +27,13 @@
     label: Pod Infra Container Image
     description: The image whose network/ipc namespaces containers in each pod will use. (It uses kubelet default if left empty)
     required: false
-    default: "registry.cn-hangzhou.aliyuncs.com/rancher-cn/pause-amd64:3.0"
-    type: string
-  - variable: IMAGE_NAMESPACE
-    description: images namespace for registry
-    label: Image namespace for Add-Ons registry
-    required: false
-    default: "rancher-cn"
+    default: "gcr.io/google_containers/pause-amd64:3.0"
     type: string
   - variable: REGISTRY_ADDONS
     description: The registry to pull addon images from. This should be set to the private registry from which the images for helm, heapster, dashboard and dns (and other addon-services) should be pulled.
     label: Private Registry for Add-Ons
     required: false
-    default: "registry.cn-hangzhou.aliyuncs.com"
+    default: ""
     type: string
   - variable: EMBEDDED_BACKUPS
     label: Enable Backups
@@ -59,6 +53,18 @@
     required: true
     default: 24h
     type: string
+  - variable: ETCD_HEARTBEAT_INTERVAL
+    label: Etcd Heartbeat Interval
+    description: Time (in milliseconds) of a heartbeat interval.
+    required: true
+    default: 500
+    type: int
+  - variable: ETCD_ELECTION_TIMEOUT
+    label: Etcd Election Timeout
+    description: Time (in milliseconds) for an election to timeout.
+    required: true
+    default: 5000
+    type: int
 
 kubernetes:
     metadata:
@@ -71,6 +77,8 @@ kubernetes:
         response_timeout: 2000
         unhealthy_threshold: 3
         healthy_threshold: 2
+        initializing_timeout: 60000
+        reinitializing_timeout: 60000
     retain_ip: true
 
 etcd:
@@ -86,6 +94,8 @@ etcd:
         response_timeout: 3000
         unhealthy_threshold: 3
         healthy_threshold: 2
+        initializing_timeout: 60000
+        reinitializing_timeout: 60000
         recreate_on_quorum_strategy_config:
             quorum: 2
         strategy: recreateOnQuorum
@@ -98,6 +108,8 @@ rancher-kubernetes-agent:
         response_timeout: 2000
         unhealthy_threshold: 3
         healthy_threshold: 2
+        initializing_timeout: 60000
+        reinitializing_timeout: 60000
 
 scheduler:
     health_check:
@@ -107,6 +119,8 @@ scheduler:
         response_timeout: 2000
         unhealthy_threshold: 3
         healthy_threshold: 2
+        initializing_timeout: 60000
+        reinitializing_timeout: 60000
 
 controller-manager:
     health_check:
@@ -116,6 +130,8 @@ controller-manager:
         response_timeout: 2000
         unhealthy_threshold: 3
         healthy_threshold: 2
+        initializing_timeout: 60000
+        reinitializing_timeout: 60000
 
 kubectld:
     health_check:
@@ -124,6 +140,8 @@ kubectld:
         response_timeout: 2000
         unhealthy_threshold: 3
         healthy_threshold: 2
+        initializing_timeout: 60000
+        reinitializing_timeout: 60000
 
 
 rancher-ingress-controller:
@@ -134,3 +152,5 @@ rancher-ingress-controller:
         response_timeout: 2000
         unhealthy_threshold: 3
         healthy_threshold: 2
+        initializing_timeout: 60000
+        reinitializing_timeout: 60000
