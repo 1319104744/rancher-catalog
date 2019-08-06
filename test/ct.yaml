@@ -1,1 +1,11 @@
-
+remote: rancher-catalog
+target-branch: master
+chart-dirs:
+  - infra-templates
+  - integration
+  - project-templates
+  - scripts
+  - templates
+excluded-charts:
+chart-repos:
+helm-extra-args: --timeout 600
