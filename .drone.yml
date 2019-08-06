@@ -12,5 +12,5 @@ steps:
   image: guangbo/chart-testing:v2.0.2-rancher1
   commands:
   - git remote add rancher-catalog https://github.com/1319104744/rancher-catalog
-  - git fetch rancher-charts master
+  - git fetch rancher-catalog master
   - ct lint --config test/ct.yaml
