@@ -13,4 +13,3 @@ steps:
   commands:
     - git remote add rancher-catalog https://github.com/1319104744/rancher-catalog
     - git fetch rancher-charts master
-    - ./scripts/ci
